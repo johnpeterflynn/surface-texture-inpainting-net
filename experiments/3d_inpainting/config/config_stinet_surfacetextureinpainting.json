@@ -1,0 +1,129 @@
+{
+    "name": "manifoldsolidcolorinpainting",
+    "n_gpu": 1,
+    "seed": 49,
+    "archs": {
+        "SingleConvMeshNet": {
+            "enabled": false,
+            "args": {
+                "feature_number": 10,
+                "num_propagation_steps": 3,
+                "filter_sizes": [32, 32, 32, 32],
+                "num_classes": 3
+            }
+        },
+        "SurfaceTextureInpaintingNet": {
+            "enabled": true,
+            "args": {
+                "input_nc": 10,
+                "output_nc": 3,
+                "ngf": 64,
+                "n_blocks": 9,
+                "dilations": [1, 1, 1, 2, 4, 8, 16, 1, 1],
+                "norm": "instance",
+                "use_dropout": false,
+                "init_type": "normal",
+                "init_gain": 0.02,
+                "pooling_type": "max",
+                "n_levels": 2,
+                "n_repeated_io_convs": 1,
+                "filter_type": "edgeconvtransinv",
+                "checkpoint_bottleneck": true,
+                "num_blocks_per_uncheckpointed_block": 1,
+                "use_label_embedding": false,
+                "num_classes": 21,
+                "num_embedding": 12
+            }
+        }
+    },
+    "data_loader": {
+        "type": "ScanNetGraphColorDataLoader",
+        "args": {
+            "train_root_dir": "data/generated/graph_levels/qem_indices_dilated_2_4_6_8_16_distmask/train/",
+            "val_root_dir": "data/generated/graph_levels/qem_indices_dilated_2_4_6_8_16_distmask/val/",
+            "original_meshes_dir": "data/scannet/scans/",
+            "mask_name": "rad_16",
+            "train_batch_size": 1,
+            "num_cumulated_train_batches": 1,
+            "color_samples_per_channel": 1,
+            "test_batch_size": 1,
+            "num_workers": 8,
+            "end_level": 3,
+            "max_num_train_scenes": -1,
+            "max_num_val_scenes": -1,
+            "num_crops_per_train_scene": -1,
+            "num_crops_per_val_scene": -1,
+            "no_train_cropped": true,
+            "num_train_masks": 1,
+            "num_val_masks": 1,
+            "train_use_repeated_reconsts": true,
+            "val_use_repeated_reconsts": true,
+            "train_transform": [
+                {
+                    "type": "CoordsNormalization",
+                    "args": {
+                        "max_sizes": [
+                            1.5,
+                            1.5,
+                            1.5
+                        ]
+                    }
+                },
+                {
+                    "type": "RandomLinearTransformation",
+                    "args": {
+                        "flip": true
+                    }
+                },
+                {
+                    "type": "RandomRotation",
+                    "args": {}
+                }
+            ],
+            "valid_transform": [
+                {
+                    "type": "CoordsNormalization",
+                    "args": {
+                        "max_sizes": [
+                            1.5,
+                            1.5,
+                            1.5
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 20000,
+            "gamma": 0.5
+        }
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args": {
+            "lr": 7e-05,
+            "weight_decay": 0,
+            "amsgrad": true
+        }
+    },
+    "loss": "",
+    "metrics": [],
+    "trainer": {
+        "type": "Inpainting3DTrainer",
+        "epochs": 2000,
+        "epochs_per_fid": 10,
+        "visualize_predictions": false,
+        "visualize_samples": false,
+        "do_validation": true,
+        "use_mask_weighted_loss": true,
+        "batches_per_log": 1,
+        "save_period": 50,
+        "verbosity": 2,
+        "monitor": "min val_loss",
+        "early_stop": 1000,
+        "tensorboard": true
+    }
+}

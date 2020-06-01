@@ -1,0 +1,111 @@
+{
+    "name": "imagecolorinpainting",
+    "n_gpu": 1,
+    "seed": 49,
+    "archs": {
+        "SurfaceTextureInpaintingNet": {
+            "enabled": true,
+            "args": {
+                "input_nc": 4,
+                "output_nc": 3,
+                "ngf": 64,
+                "n_blocks": 9,
+                "dilations": [1, 1, 1, 1, 1, 1, 1, 1, 1],
+                "norm": "instance",
+                "use_dropout": false,
+                "init_type": "normal",
+                "init_gain": 0.02,
+                "pooling_type": "max",
+                "n_levels": 2,
+                "n_repeated_io_convs": 1,
+                "filter_type": "edgeconv",
+                "checkpoint_bottleneck": false
+            }
+        },
+        "Resnet2D": {
+            "enabled": false,
+            "args": {
+                "input_nc": 4,
+                "output_nc": 3,
+                "ngf": 64,
+                "n_blocks": 9,
+                "norm": "instance",
+                "use_dropout": false,
+                "init_type": "normal",
+                "init_gain": 0.02,
+                "dilation_order": 1,
+                "pooling_type": "max",
+                "io_receptive_field_type": "normal",
+                "n_levels": 2,
+                "n_repeated_io_convs": 1,
+                "filter_type": "conv2d"
+            }
+        }
+    },
+    "data_loader": {
+        "type": "ImageGraphTextureDataLoader",
+        "args": {
+            "root_dir": "data/yawar/base/textures",
+            "train_batch_size": 4,
+            "num_cumulated_train_batches": 1,
+            "test_batch_size": 1,
+            "num_workers": 8,
+            "end_level": 3,
+            "max_num_scenes": 1,
+            "max_items": -1,
+            "img_size": 128,
+            "crop_half_width": 16,
+            "num_static_samples": 64,
+            "circle_radius": 18,
+            "no_train_cropped": true,
+            "random_mask": true,
+            "random_augmentation": true,
+            "train_transform": [],
+            "valid_transform": []
+        }
+    },
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 20000,
+            "gamma": 0.5
+        }
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args": {
+            "lr": 1.4e-04,
+            "weight_decay": 0,
+            "amsgrad": true
+        }
+    },
+    "loss": "",
+    "metrics": [],
+    "trainer": {
+        "type": "Inpainting2DTrainer",
+        "epochs": 2000,
+        "epochs_per_fid": 5,
+        "use_train_fid": true,
+        "use_val_fid": true,
+        "visualize_predictions": false,
+        "visualize_samples": true,
+        "use_gan": false,
+        "gan_loss_weight": 1.0e-3,
+        "gan_mode": "lsgan",
+        "use_vgg": false,
+        "use_total_variation": false,
+        "vgg_content_weight": 0.03,
+        "vgg_style_weight": 3000.0,
+        "total_variation_weight": 0.0001,
+        "do_validation": true,
+        "batches_per_log": 1,
+        "save_period": 20,
+        "verbosity": 2,
+        "monitor": "min val_loss",
+        "early_stop": 1000,
+        "tensorboard": true
+    },
+    "eval": null,
+    "vis": false,
+    "git_hash": "dummy_hash"
+}
