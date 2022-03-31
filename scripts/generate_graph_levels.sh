@@ -3,8 +3,10 @@
 #export CUDA_DEVICE_ORDER=PCI_BUS_ID
 #export CUDA_VISIBLE_DEVICES=3
 
-export PATH=$PATH:/home/flynn/workspace/thesis/vcglib/apps/tridecimator
-export PATH=$PATH:/home/flynn/workspace/thesis/vcglib/apps/sample/trimesh_clustering
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+export PATH=$PATH:${SCRIPT_DIR}/../vcglib/apps/tridecimator
+export PATH=$PATH:${SCRIPT_DIR}/../vcglib/apps/sample/trimesh_clustering
 
 PREPROCESS_NAME=$1
 PROCS=$2
