@@ -3,15 +3,6 @@
     "n_gpu": 1,
     "seed": 49,
     "archs": {
-        "SingleConvMeshNet": {
-            "enabled": false,
-            "args": {
-                "feature_number": 10,
-                "num_propagation_steps": 3,
-                "filter_sizes": [32, 32, 32, 32],
-                "num_classes": 3
-            }
-        },
         "SurfaceTextureInpaintingNet": {
             "enabled": true,
             "args": {
@@ -39,8 +30,8 @@
     "data_loader": {
         "type": "ScanNetGraphColorDataLoader",
         "args": {
-            "train_root_dir": "data/generated/graph_levels/qem_indices_dilated_2_4_6_8_16_distmask/train/",
-            "val_root_dir": "data/generated/graph_levels/qem_indices_dilated_2_4_6_8_16_distmask/val/",
+            "train_root_dir": "data/generated/graph_levels/qem_indices_dilated_2_4_6_8_16_circlemask/train/",
+            "val_root_dir": "data/generated/graph_levels/qem_indices_dilated_2_4_6_8_16_circlemask/val/",
             "original_meshes_dir": "data/scannet/scans/",
             "mask_name": "rad_16",
             "train_batch_size": 1,

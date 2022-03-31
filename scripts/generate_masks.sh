@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
 
 #export CUDA_DEVICE_ORDER=PCI_BUS_ID
-#export CUDA_VISIBLE_DEVICES=3
+#export CUDA_VISIBLE_DEVICES=0
 
 PREPROCESS_NAME=$1
 MASK_NAME=$2
 PROCS=$3
 NUM_SAMPLES=$4
 SUB_PARAMS=$5
-
-#MASK_NAME="rad_16"
-#SUB_PARAMS="circles --radius 16 --frac_masked_vertices 0.25 --masks_per_scene 16"
-
-#PARAMS="--in_path ./data/scannet/scans --out_path ./output/circles --mask_name test --number 16 --display"
 
 PARAMS="--in_path ./data/scannet/scans --mask_name ${MASK_NAME} --preprocess_name ${PREPROCESS_NAME}"
 #SUB_PARAMS="observers --in_sens_path ./data/scannet_sens_data"
