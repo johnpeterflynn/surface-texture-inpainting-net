@@ -48,7 +48,7 @@ In our experiments we use ScanNet, a dataset containing 3D reconstructions of 15
 
 Please refer to https://github.com/ScanNet/ScanNet to gain access to the ScanNet dataset. It could take a few days to be granted access.
 
-Our scripts only rely on the low-resolution meshes. You can download these by specifying the file type _\_vh_clean_2.ply_ in the download script provided by ScanNet.
+Our scripts only rely on ScanNet's low-resolution meshes. You can download these by specifying the file type _\_vh_clean_2.ply_ in the download script provided by ScanNet.
 
 #### Symbolic link pointing to dataset
 
@@ -66,8 +66,6 @@ Unfortunately our texture dataset is not publically available. If you would like
 
 We provide scripts to preprocess ScanNet scenes and train STINet. Each experiment subfolder contains a configuration file used for training. Modify these scripts and the configuration files to set up your own training and inference pipelines.
 
-NOTE: Preprocessing each ScanNet scene takes roughly 30 minutes but processing scenes can be distributed amongst available CPU cores.
-
 #### 2D Image Inpainting
 
 ```bash
@@ -75,6 +73,8 @@ experiments/2d_inpainting/run_2d_inpainting.sh
 ```
 
 #### 3D Surface Inpainting
+
+NOTE: Preprocessing each ScanNet scene takes roughly 30 minutes but processing scenes can be distributed amongst available CPU cores.
 
 ```bash
 experiments/3d_inpainting/preprocess_3d_inpainting.sh
@@ -85,7 +85,7 @@ experiments/3d_inpainting/run_3d_inpainting.sh
 
 #### Step 1
 
-`scripts/generate_graph_levels.sh` parses ScanNet meshes as graphs and computes various versions of the graphs used in the network. For each mesh it computes mesh simplification levels, pooling maps between vertices of consecutive levels and vertex neighborhoods for dilated convolutions.
+`scripts/generate_graph_levels.sh` parses ScanNet meshes into graphs and computes various versions of the graphs used in STINet. For each mesh it computes mesh simplification levels, pooling maps between vertices of consecutive levels and vertex neighborhoods for dilated convolutions.
 
 This outputs files containing graphs as serialized tensor objects to data/generated/graph_levels/<preprocess_name>/train and data/generated/graph_levels/<preprocess_name>/val.
 
