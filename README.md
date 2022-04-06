@@ -3,6 +3,19 @@ Inpainting with deep learning looks great these days but what if the pixels don'
 
 Completing surface texture on partially textured 3D meshes using graph neural networks.
 
+**Docs: [Thesis](docs/flynn_thesis_final.pdf) | [Video 1](https://youtu.be/xjIRtMGdiQU) | [Video 2](https://youtu.be/BTlt3wAWSb0)**
+
+
+<p align="center">
+<img src='docs/images/output640_lan.gif'>
+</p>
+
+### Network
+
+<p align="center">
+<img src='docs/images/networksmall.png'>
+</p>
+
 # Getting Started
 
 ## Installation
