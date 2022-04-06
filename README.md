@@ -1,7 +1,5 @@
 # Surface Texture Inpainting Network
-Inpainting with deep learning looks great these days but what if the pixels don't live on a flat, rectangular image?
-
-Completing surface texture on partially textured 3D meshes using graph neural networks.
+Inpainting with deep learning looks great these days but what if the pixels live on a 3D model instead of a flat, rectangular image? :thinking:
 
 **Docs: [Thesis](docs/flynn_thesis_final.pdf) | [Video 1](https://youtu.be/xjIRtMGdiQU) | [Video 2](https://youtu.be/BTlt3wAWSb0)**
 
@@ -10,13 +8,13 @@ Completing surface texture on partially textured 3D meshes using graph neural ne
 <img src='docs/images/output640_lan.gif'>
 </p>
 
-### Network
+We present the Surface Texture Inpainting Network (STINet), a graph neural network-based model that generates complete surface texture for partially textured 3D meshes. In contrast to 2D image inpainting which focuses on predicting missing pixel values on a fixed regular grid, STINet aims to inpaint color information on mesh surfaces of varying geometry and topology. STINet learns from spatial information such as vertex positions and normals as well as graph connectivity to effectively predict vertex color. Through experiments on 2D textures and real-world 3D reconstructions, we demonstrate the potential of STINet to inpaint two-dimensional manifolds with results that are perceptually comparable to classic 2D convolutions. To our knowledge, this is the first work to utilize graph neural networks for surface texture completion.
 
 <p align="center">
 <img src='docs/images/networksmall.png'>
 </p>
 
-# Getting Started
+_This repository contains a PyTorch implementation of STINet capable of running on the [ScanNet](https://github.com/ScanNet/ScanNet) dataset._
 
 ## Installation
 
@@ -43,7 +41,7 @@ pip install -r requirements.txt
 conda install pyg -c pyg
 ```
 
-To generate mesh simplification levels we utilize tridecimator during preprocessing. Tridecimator is contained in our fork of VCGLib which is a submodule of this repository.
+To generate mesh simplification levels we utilize tridecimator during preprocessing. Tridecimator is contained in our fork of [VCGLib](https://github.com/cnr-isti-vclab/vcglib) which is a submodule of this repository.
 
 
 ```bash
@@ -93,3 +91,24 @@ NOTE: Preprocessing each ScanNet scene takes roughly 30 minutes but processing s
 experiments/3d_inpainting/preprocess_3d_inpainting.sh
 experiments/3d_inpainting/run_3d_inpainting.sh
 ```
+
+## Visualization
+The visualization tool is based on [open3D](http://www.open3d.org/) and handles the following key events:
+* k = ground truth
+* j = prediction
+* m = mask
+* f = error heat map
+* l = local lighting on/off
+* s = smoothing mesh on/off
+* b = back-face culling on/off
+* p = take a screenshot
+* d = save ground truth, mask and prediction meshes as .ply in `visualizations/` folder
+* q = quit and show next room
+
+## Acknowledgements
+
+This project structure is based on the [PyTorch-Template](https://github.com/victoresque/pytorch-template) by [@victoresque](https://github.com/victoresque).
+
+Much of this code was inspired by [Jonas Schult's](https://github.com/JonasSchult) work [DualConvMesh-Net](https://github.com/VisualComputingInstitute/dcm-net).
+
+Many thanks to [Matthias Fey](https://github.com/rusty1s) and the [PyTorch Geometric](https://pytorch-geometric.readthedocs.io/en/latest/) team!
