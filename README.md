@@ -142,7 +142,7 @@ If you use this code in your research please cite our work.
   title   = {Free-Form Surface Texture Inpainting Using Graph Neural Networks},
   school  = {Technical University of Munich},
   year    = {2022},
-  note    = {Written in the Visual Computing Group}
+  note    = {Visual Computing Group}
 }
 ```
 
