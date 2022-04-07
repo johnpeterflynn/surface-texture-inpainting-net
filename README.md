@@ -131,6 +131,21 @@ We provide a tool to visualize 3D inpainting results that our framework will ope
 * d = save ground truth, mask and prediction meshes as .ply in `visualizations/` folder
 * q = quit and show next room
 
+## Citation
+
+If you use this code in your research please cite our work.
+
+```
+@mastersthesis{STINet2022,
+  author  = {John Peter Flynn and
+               Matthias Niessner},
+  title   = {Free-Form Surface Texture Inpainting Using Graph Neural Networks},
+  school  = {Technical University of Munich},
+  year    = {2022},
+  note    = {Written in the Visual Computing Group}
+}
+```
+
 ## Acknowledgements
 
 This project structure is based on the [PyTorch-Template](https://github.com/victoresque/pytorch-template) by [@victoresque](https://github.com/victoresque).
