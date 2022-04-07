@@ -73,9 +73,9 @@ ln -s /path/to/downloaded/scannet/files data/scannet
 
 Unfortunately our texture dataset is not publically available. If you would like to build your own you can aggregate images of textures from the following smaller datasets.
 
-## Run Preprocessing and Training
+## Preprocessing and Training
 
-We provide scripts to preprocess ScanNet scenes and train STINet. Each experiment subfolder contains a configuration file used for training. Modify these scripts and the configuration files to set up your own training and inference pipelines.
+We provide scripts to preprocess ScanNet scenes and train STINet. Each experiment subfolder contains a configuration file in config/ that is used for training. Modify these scripts and the configuration files to set up your own training and inference pipelines.
 
 #### 2D Image Inpainting
 
@@ -92,8 +92,34 @@ experiments/3d_inpainting/preprocess_3d_inpainting.sh
 experiments/3d_inpainting/run_3d_inpainting.sh
 ```
 
-## Visualization
-The visualization tool is based on [open3D](http://www.open3d.org/) and handles the following key events:
+## Training Progress and Model Checkpoints
+
+We use tensorboard to monitor model performance during training. Additionally the training pipeline saves model checkpoints every few epochs as specified in the configutation file. Tensorboard logs and model checkpoints are both saved to the saved/ directory by default.
+
+While training a model open tensorboard with the following command.
+```bash
+tensorboard --logdir saved/
+```
+
+## Inference and Visualization
+
+We additionally provide example scripts to evaluate 2D and 3D inpainting using model checkpoints. Similar to training, be sure to review modify these scripts when setting up a custom training pipeline.
+
+To run either script you must specity the path to the model checkpoint you want to evaluate in the --resume parameter of the line `python train.py <params>`.
+
+#### Eval 2D Image Inpainting
+
+```bash
+experiments/2d_inpainting/eval_2d_inpainting.sh
+```
+
+#### Eval 3D Image Inpainting
+
+```bash
+experiments/3d_inpainting/eval_3d_inpainting.sh
+```
+
+We provide a tool to visualize 3D inpainting results that our framework will open during evaluation. The tool is based on [open3D](http://www.open3d.org/) and handles the following key events:
 * k = ground truth
 * j = prediction
 * m = mask
