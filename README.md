@@ -34,14 +34,14 @@ Ensure you are using pip within your virtual environment.
 conda install pip
 ```
 
-Install packages from requirements.txt. This will also install necessary libraries such as OpenCV and Open3D. PyTorch Geometric (pyg) must be installed separately. 
+Install packages from requirements.txt. This will also install necessary libraries such as OpenCV and Open3D. PyTorch Geometric (pyg) however must be installed separately. 
 
 ```bash
 pip install -r requirements.txt
 conda install pyg -c pyg
 ```
 
-To generate mesh simplification levels we utilize tridecimator during preprocessing. Tridecimator is contained in our fork of [VCGLib](https://github.com/cnr-isti-vclab/vcglib) which is a submodule of this repository.
+We utilize tridecimator to generate mesh simplification levels during preprocessing. Tridecimator is contained in our fork of [VCGLib](https://github.com/cnr-isti-vclab/vcglib) which is a submodule of this repository.
 
 
 ```bash
@@ -53,7 +53,7 @@ scripts/install_vcglib.sh
 
 ### 3D Dataset: ScanNet
 
-In our experiments we use ScanNet, a dataset containing 3D reconstructions of 1500 indoor scenes.
+In our experiments we use ScanNet, a dataset containing 3D reconstructions of approximately 1500 indoor scenes.
 
 #### Download ScanNet
 
@@ -75,7 +75,7 @@ Unfortunately our texture dataset is not publically available. If you would like
 
 ## Preprocessing and Training
 
-We provide scripts to preprocess ScanNet scenes and train STINet. Each experiment subfolder contains a configuration file in config/ that is used for training. Modify these scripts and the configuration files to set up your own training and inference pipelines.
+We provide scripts to preprocess ScanNet scenes and train STINet. Each experiment subfolder contains a configuration file in config/ that is used for training. Modify these scripts and the configuration files to set up your own training and evaluation pipelines. See the [preprocessing readme](preprocessing/README.md) for additional information on the preprocessing steps.
 
 #### 2D Image Inpainting
 
