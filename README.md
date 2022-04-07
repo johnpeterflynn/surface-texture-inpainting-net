@@ -71,11 +71,11 @@ ln -s /path/to/downloaded/scannet/files data/scannet
 
 ### 2D Dataset: Images of Textures
 
-Unfortunately our texture dataset is not publically available. If you would like to build your own you can aggregate images of textures from the following smaller datasets.
+Unfortunately our texture dataset is not publically available. If you would like to build your own you can aggregate images of textures from a variety of online sources such as [Describable Textures](https://www.robots.ox.ac.uk/~vgg/data/dtd/), [Salzburg Texture Image Database](https://wavelab.at/sources/STex/), [Pixar 128](https://renderman.pixar.com/pixar-one-twenty-eight), [KTH-TIPS](https://www.csc.kth.se/cvap/databases/kth-tips/credits.html) and [Colored Brodatz Texture](https://multibandtexture.recherche.usherbrooke.ca/colored%20_brodatz.html) (remember to cite!).
 
 ## Preprocessing and Training
 
-We provide scripts to preprocess ScanNet scenes and train STINet. Each experiment subfolder contains a configuration file in config/ that is used for training. Modify these scripts and the configuration files to set up your own training and evaluation pipelines. See the [preprocessing readme](preprocessing/README.md) for additional information on the preprocessing steps.
+We provide scripts to preprocess ScanNet scenes and train STINet. Each experiment subfolder contains a configuration file in `config/` that is used for training. Modify these scripts and the configuration files to set up your own training and evaluation pipelines. See the [preprocessing readme](preprocessing/README.md) for additional information on the preprocessing steps.
 
 #### 2D Image Inpainting
 
@@ -94,7 +94,7 @@ experiments/3d_inpainting/run_3d_inpainting.sh
 
 ## Training Progress and Model Checkpoints
 
-We use tensorboard to monitor model performance during training. Additionally the training pipeline saves model checkpoints every few epochs as specified in the configutation file. Tensorboard logs and model checkpoints are both saved to the saved/ directory by default.
+We use tensorboard to monitor model performance during training. Additionally the training pipeline saves model checkpoints every few epochs as specified in the configutation file. Tensorboard logs and model checkpoints are both saved to the `saved/` directory by default.
 
 While training a model open tensorboard with the following command.
 ```bash
@@ -103,9 +103,9 @@ tensorboard --logdir saved/
 
 ## Inference and Visualization
 
-We additionally provide example scripts to evaluate 2D and 3D inpainting using model checkpoints. Similar to training, be sure to review modify these scripts when setting up a custom training pipeline.
+We additionally provide example scripts to evaluate 2D and 3D inpainting using model checkpoints. Similar to training, be sure to review and modify these scripts when setting up a custom training pipeline.
 
-To run either script you must specity the path to the model checkpoint you want to evaluate in the --resume parameter of the line `python train.py <params>`.
+To run either script you must specity the path to the model checkpoint you want to evaluate in the `--resume` parameter of the line `python train.py <params>`.
 
 #### Eval 2D Image Inpainting
 
