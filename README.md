@@ -1,5 +1,5 @@
 # Surface Texture Inpainting Using Graph Neural Networks
-Inpainting with deep learning looks great these days but what if the pixels live on a 3D model instead of a flat, rectangular image? :thinking:
+[Inpainting](https://en.wikipedia.org/wiki/Inpainting) with deep learning looks great these days but what if the pixels live on a 3D model instead of a flat, rectangular image? :thinking:
 
 **Docs: [Thesis](docs/flynn_thesis_final.pdf) | [Video 1](https://youtu.be/xjIRtMGdiQU) | [Video 2](https://youtu.be/BTlt3wAWSb0)**
 
