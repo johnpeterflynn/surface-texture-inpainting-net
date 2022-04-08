@@ -66,6 +66,7 @@ Our scripts only rely on ScanNet's low-resolution meshes. You can download these
 Once you've downloaded ScanNet you should link this project to them by placing a symbolic link within this project directory.
 
 ```bash
+mkdir data
 ln -s /path/to/downloaded/scannet/files data/scannet
 ```
 
